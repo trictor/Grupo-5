@@ -5,21 +5,38 @@ import Data.Maybe -- por si llegan a usar un metodo de coleccion y devuelva Noth
 -- import Test.Hspec -- para usar los test
 
 
-deposito dineroDepositado unaBilletera = (+) dineroDepositado unaBilletera
---extraccion  unDeposito monto = min(, 0)
---restoExtraccion deposito monto =
+mostrarBilletera usuario = usuario
+
+sumarDinero :: Float -> Usuario -> Usuario
+sumarDinero unDinero unUsuario = unUsuario {
+            billetera = billetera unUsuario + unDinero
+}
+
+restarDinero :: Float -> Usuario -> Usuario
+restarDinero unDinero unUsuario = unUsuario{
+             billetera = billetera unUsuario - unDinero
+}
+
+deposito :: Float -> Usuario -> Usuario
+deposito dineroDepositado unUsuario = sumarDinero dineroDepositado unUsuario
+
+extraccion :: Float -> Usuario -> Usuario
+extraccion dineroExtraido unUsuario | (billetera.restarDinero dineroExtraido) unUsuario <=0  = unUsuario{billetera = 0}
+                                    | otherwise = (restarDinero dineroExtraido unUsuario)
+
 
                     --falta terminar para el tope de 10 unidades
-upgrade unaBilletera  = (+) (aumentoBilletera unaBilletera) unaBilletera
-aumentoBilletera laBilletera = laBilletera * 0.2
-cierreDeCuenta unaBilletera = 0
-quedaIgual unaBilletera = unaBilletera
+--upgrade unaBilletera  = (+) (aumentoBilletera unaBilletera) unaBilletera
+--aumentoBilletera laBilletera = laBilletera * 0.2
+--cierreDeCuenta unaBilletera = 0
+--quedaIgual unaBilletera = unaBilletera
 
           -- usuarios
 data Usuario = Usuario {
                   nombre :: String,
-                  billetera :: Int
+                  billetera :: Float
                   }deriving (Show, Eq)
+
 pepe = Usuario "pepe" 10
 lucho = Usuario "lucho" 2
 
