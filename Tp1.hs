@@ -50,3 +50,11 @@ lucho = Usuario "lucho" 2
 -- transacciones unUsuario tipoTransaccion = unUsuario (billetera (tipoTransaccion ) )
 
 pepe2 = Usuario "pepe2" 20
+
+-- nuevos eventos
+-- de hecho estoy dudando si va esto, basicamente lo puse por que dice agregar como funciones el tocoYmeVoy y ahorranteErrante
+-- ya que sino, esto basicamente se puede probar en consola con composicion y es idem!
+tocoYmeVoy unUsuario = (cierreDeCuenta.upgrade.deposito 15) unUsuario
+
+
+ahorranteErrante unUsuario = (deposito 10.upgrade.deposito 8. extraccion 1. deposito 2.deposito 1) unUsuario
