@@ -18,7 +18,7 @@ restarDinero unDinero unUsuario = unUsuario{
 }
 
 hacerAumento unUsuario = unUsuario {
-             billetera = billetera unUsuario + billetera unUsuario * 1.20 }
+             billetera = billetera unUsuario * 1.20}
 
 esMayorADiez unUsuario = (billetera.hacerAumento) unUsuario >= (billetera.sumarDinero 10) unUsuario
 
