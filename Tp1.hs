@@ -59,7 +59,14 @@ tocoYmeVoy unUsuario = (cierreDeCuenta.upgrade.deposito 15) unUsuario
 
 ahorranteErrante unUsuario = (deposito 10.upgrade.deposito 8. extraccion 1. deposito 2.deposito 1) unUsuario
 
-transaccion :: Usuario -> Float -> Usuario
-transaccion usuario unMonto | nombre usuario == "pepe" = (extraccion unMonto) usuario
-                            | nombre usuario == "lucho" = (deposito unMonto) usuario
-                            | otherwise  = quedaIgual usuario
+-- transaccion :: Usuario -> Float -> Usuario
+-- transaccion usuario unMonto | nombre usuario == "pepe" = (extraccion unMonto) usuario
+--                            | nombre usuario == "lucho" = (deposito unMonto) usuario
+--                            | otherwise  = quedaIgual usuario
+transaccion1 unUsuario = cierreDeCuenta lucho
+transaccion2 unUsuario = (deposito 5) pepe
+
+laTransaccion unUsuario | not(nombresIguales (unUsuario) "pepe") = transaccion1 unUsuario
+                        | not(nombresIguales (unUsuario) "lucho") = transaccion2 unUsuario
+
+nombresIguales unUsuario unNombre = nombre unUsuario == unNombre
