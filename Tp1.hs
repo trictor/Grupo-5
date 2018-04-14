@@ -43,30 +43,23 @@ data Usuario = Usuario {
         billetera :: Float
         }deriving (Show, Eq)
 
-pepe = Usuario "pepe" 10
-lucho = Usuario "lucho" 2
+--Usuarios
 
--- transacciones
--- transacciones unUsuario tipoTransaccion = unUsuario (billetera (tipoTransaccion ) )
-
-pepe2 = Usuario "pepe2" 20
+pepe = Usuario "Pepe" 10
+lucho = Usuario "Lucho" 2
+pepe2 = Usuario "Pepe" 20
 
 -- nuevos eventos
 -- de hecho estoy dudando si va esto, basicamente lo puse por que dice agregar como funciones el tocoYmeVoy y ahorranteErrante
--- ya que sino, esto basicamente se puede probar en consola con composicion y es idem!
+-- ya que sino, esto basica-mente se puede probar en consola con composicion y es idem!
 tocoYmeVoy unUsuario = (cierreDeCuenta.upgrade.deposito 15) unUsuario
 
 
 ahorranteErrante unUsuario = (deposito 10.upgrade.deposito 8. extraccion 1. deposito 2.deposito 1) unUsuario
 
--- transaccion :: Usuario -> Float -> Usuario
--- transaccion usuario unMonto | nombre usuario == "pepe" = (extraccion unMonto) usuario
---                            | nombre usuario == "lucho" = (deposito unMonto) usuario
---                            | otherwise  = quedaIgual usuario
-transaccion1 unUsuario = cierreDeCuenta lucho
-transaccion2 unUsuario = (deposito 5) pepe
 
-laTransaccion unUsuario | not(nombresIguales (unUsuario) "pepe") = transaccion1 unUsuario
-                        | not(nombresIguales (unUsuario) "lucho") = transaccion2 unUsuario
+transaccion1 unUsuario | nombre unUsuario == "Lucho" = cierreDeCuenta unUsuario
+                       | otherwise = quedaIgual unUsuario
 
-nombresIguales unUsuario unNombre = nombre unUsuario == unNombre
+transaccion2 unUsuario | nombre unUsuario == "Pepe"  = deposito 5 unUsuario
+                       | otherwise = quedaIgual unUsuario
