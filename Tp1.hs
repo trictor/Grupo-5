@@ -5,8 +5,6 @@ import Data.Maybe -- por si llegan a usar un metodo de coleccion y devuelva Noth
 -- import Test.Hspec -- para usar los test
 
 
---Basicamente termine las funciones de cada evento
-
 sumarDinero :: Float -> Usuario -> Usuario
 sumarDinero unDinero unUsuario = unUsuario {
             billetera = billetera unUsuario + unDinero
@@ -49,6 +47,15 @@ pepe = Usuario "Pepe" 10
 lucho = Usuario "Lucho" 2
 pepe2 = Usuario "Pepe" 20
 
+
+--Transaccciones 1 y 2--
+
+transacción1 unUsuario | nombre unUsuario == "Lucho" = cierreDeCuenta unUsuario
+                       | otherwise = quedaIgual unUsuario
+
+transacción2 unUsuario | nombre unUsuario == "Pepe"  = deposito 5 unUsuario
+                       | otherwise = quedaIgual unUsuario
+
 -- nuevos eventos
 -- de hecho estoy dudando si va esto, basicamente lo puse por que dice agregar como funciones el tocoYmeVoy y ahorranteErrante
 -- ya que sino, esto basica-mente se puede probar en consola con composicion y es idem!
@@ -57,9 +64,12 @@ tocoYmeVoy unUsuario = (cierreDeCuenta.upgrade.deposito 15) unUsuario
 
 ahorranteErrante unUsuario = (deposito 10.upgrade.deposito 8. extraccion 1. deposito 2.deposito 1) unUsuario
 
+--transacciones de prueba pedidas a modo de prueba por enunciado
+transacción3 unUsuario = tocoYmeVoy unUsuario
+transacción4 unUsuario = ahorranteErrante unUsuario
 
-transaccion1 unUsuario | nombre unUsuario == "Lucho" = cierreDeCuenta unUsuario
-                       | otherwise = quedaIgual unUsuario
+-- transaccción mas compleja
 
-transaccion2 unUsuario | nombre unUsuario == "Pepe"  = deposito 5 unUsuario
+transacción5 unUsuario | nombre unUsuario == "Pepe" = extraccion 7 unUsuario
+                       | nombre unUsuario == "Lucho" = deposito 7 unUsuario
                        | otherwise = quedaIgual unUsuario
