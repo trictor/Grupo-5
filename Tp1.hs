@@ -74,7 +74,7 @@ cierreDeCuenta unUsuario = unUsuario {
 }
 
 quedaIgual :: Evento
-quedaIgual unUsuario = unUsuario
+quedaIgual unUsuario = unUsuario -- id 
 
 data Usuario = Usuario {
         nombre :: String,
@@ -92,10 +92,10 @@ lucho2 = Usuario "Lucho" 10
 
 prueba = Usuario "prueba" 10
 
---Transaccciones 1 y 2--
+--Transaccciones 1 y 2-- -- Crear una funcion generadora de transaciones evento-usuarioAplicar-usuarioAVerificar=Evento
 
 transacción1 :: Transacción
-transacción1 unUsuario | nombre unUsuario == "Lucho" = cierreDeCuenta unUsuario
+transacción1 unUsuario | nombre unUsuario == "Lucho" = cierreDeCuenta unUsuario -- delegar a compararUsuario
                        | otherwise = quedaIgual unUsuario
 
 transacción2 :: Transacción
@@ -107,10 +107,11 @@ transacción2 unUsuario | nombre unUsuario == "Pepe"  = deposito 5 unUsuario
 -- ya que sino, esto basica-mente se puede probar en consola con composicion y es idem!
 
 tocoYmeVoy :: Evento
-tocoYmeVoy unUsuario = (cierreDeCuenta.upgrade.deposito 15) unUsuario
+tocoYmeVoy unUsuario = (cierreDeCuenta.upgrade.deposito 15) unUsuario --point free
 
 ahorranteErrante :: Evento
-ahorranteErrante unUsuario = (deposito 10.upgrade.deposito 8. extracción 1. deposito 2.deposito 1) unUsuario
+ahorranteErrante unUsuario = (deposito 10.upgrade.deposito 8. extracción 1. deposito 2.deposito 1) unUsuario --point free
+
 
 --Transacciones de prueba pedidas a modo de prueba por enunciado--
 transacción3 :: Transacción
